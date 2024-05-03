@@ -6,14 +6,19 @@ public class Negocio {
             datos.setNumeroUno(numeroUno);
             datos.setNumeroDos(numeroDos);
 
-            if((datos.getNumeroUno() + datos.getNumeroDos()) % 2 == 0) {
-                throw new RuntimeException("El resultado de la suma no puede ser un numero par");
+            int resultado = datos.getNumeroUno() + datos.getNumeroDos();
+
+            if(resultado % 2 == 0) {
+                throw new NegocioException("El resultado de la suma no puede ser un numero par");
             }
 
-        } catch (Exception exception) {
-            System.out.println("Que lastima que fallo");
+            return resultado;
+
+        } catch (CalculadoraException exception){
             throw exception;
+        } catch (Exception exception) {
+            throw new NegocioException("Algo raro paso en el negocio", exception);
         }
-        return 0;
+
     }
 }
